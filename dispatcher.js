@@ -7,11 +7,12 @@
  Use Highland for streams
  */
 import "highland.js";
+var _ = highland;
 
 class Dispatcher {
     constructor(options) {
         this.queueSize = options.queueSize;
-        this.workStream = new highland;
+        this.workStream = _();
     }
 
     // get work from Queue
@@ -19,6 +20,9 @@ class Dispatcher {
         //create a stream or a list of workers work streams
 
         //create all of our workers from 1 to numberOfWorkers - hold onto ID to pass in
+        for (i=0; i<=numberOfWorkers; i++) {
+
+        }
 
         //call new worker - pass in workStream and WorkerID from counter above
 
