@@ -1,0 +1,24 @@
+{
+  "name": "vagrant",
+  "version": "1.0.0",
+  "description": "a streaming node worker app",
+  "main": "collector.js",
+  "dependencies": {
+    "highland": "^2.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "webpack-dev-server --hot --progress --colors",
+    "build": "webpack --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markdia/streaming-node-worker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markdia/streaming-node-worker/issues"
+  },
+  "homepage": "https://github.com/markdia/streaming-node-worker"
+}

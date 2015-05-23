@@ -1,0 +1,22 @@
+---
+- hosts: all
+  sudo: true
+  tasks:
+  - name: update nodesource
+    shell: curl -sL https://deb.nodesource.com/setup | sudo bash -
+  - name: update apt cache
+    apt: update_cache=yes
+  - name: install required apt-get packages
+    apt: name={{ item }} state=present
+    with_items:
+      - nodejs
+      - build-essential
+      - libfontconfig
+  - name: Install npm packages globally.
+    npm: name={{ item }} global=yes
+    with_items:
+      - babel
+      - requests
+      - bunyan
+      - lodash
+      - highland
