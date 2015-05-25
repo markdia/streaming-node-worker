@@ -24,7 +24,7 @@ class Collector {
 
     // push work onto workStream
     pushWork() {
-        for (var i = 1; i < 10; i++) {
+        for (let i = 1; i < 10; i++) {
             this.workStream.write('fake event: ' + i);
         }
     }

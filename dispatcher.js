@@ -22,7 +22,7 @@ class Dispatcher {
         //another option may be to just fork the consumers with _().fork() to share backpressure
         var outboundWorkStreams = new Array;
         var workers = new Array;
-        for (var i=0; i <= numberOfWorkers; i++) {
+        for (let i=0; i <= numberOfWorkers; i++) {
             console.log('starting worker: ' + i);
             outboundWorkStreams[i] = _();
             workers[i] = new Worker({
