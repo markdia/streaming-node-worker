@@ -3,15 +3,10 @@
  */
 "use strict";
 
-/*
-Use Highland for streams
- */
-import "highland.js";
-
 class Collector {
     constructor(options) {
         this.queueSize = options.queueSize;
-        this.workStream = new highland;
+        this.workStream = _();
     }
 
     // get work from Queue

@@ -6,34 +6,35 @@
 /*
  Use Highland for streams
  */
-import "highland.js";
+var _ = require('highland');
+
+//import "highland.js";
 
 class Worker {
-    constructor(options) {
+    constructor(options, workStream) {
         this.id = options.id;
-        this.work = new workItem;
-        this.workStream = options.workStream;
-        //end should come from workstream, but what if we need emergecny force quit
         this.hardQuitStream = options.hardQuitStream;
+        /*
+        Part of me really wants to pass in workItem Validation object here in options to make the injectable
+         */
+        this.workStream = workStream;
     }
 
     // get work from Queue
     startWorker() {
-        //add yourself to workstream, workStream<-work
-
         //look for events (workItems) in Stream and process those
-
         //call new worker - pass in workStream and WorkerID from counter above
 
         //then start it
-        this.workStream.each(workItem){
-            processWorkItem(workItem);
+        this.workStream.each() {
+            console.log('pulling a new workItem from Stream');
+            var workItem = processWorkItem(workItem);
         }
 
     }
 
     processWorkItem(workItem) {
-
+        console.log('processing a workItem on worker: ' + this.id);
     }
 
     stopWorker() {

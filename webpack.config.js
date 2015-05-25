@@ -1,8 +1,9 @@
 var webpack = require('webpack');
+
 module.exports = {
     entry: [
         'webpack/hot/only-dev-server',
-        "./collector.js"
+        "./main.js"
     ],
     output: {
         path: __dirname + '/build',

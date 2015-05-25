@@ -7,27 +7,32 @@
  Use Highland for streams
  */
 import "highland.js";
-var _ = highland;
+import Worker from './worker.js';
 
 class Dispatcher {
     constructor(options) {
         this.queueSize = options.queueSize;
+        //create inbound workstream from collector
         this.workStream = _();
     }
 
     // get work from Queue
     startDispatcher(numberOfWorkers) {
-        //create a stream or a list of workers work streams
-
-        //create all of our workers from 1 to numberOfWorkers - hold onto ID to pass in
-        for (i=0; i<=numberOfWorkers; i++) {
-
+        //create all of our workers from 1 to numberOfWorkers - hold onto ID to pass in, each gets unique stream
+        var outboundWorkStreams = new Array;
+        var workers = new Array;
+        for (var i=0; i <= numberOfWorkers; i++) {
+            outboundWorkStreams[i] = _();
+            workers[i] = new Worker({
+                id: i,
+                hardQuitStream: false
+            }, outboundWorkStreams[i]);
         }
 
         //call new worker - pass in workStream and WorkerID from counter above
 
         //then start it
-        this.workStream.each(workItem){
+        this.workStream.each(workItem) {
             dispatchWork(worker, workItem);
         }
 
