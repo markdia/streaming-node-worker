@@ -1,5 +1,6 @@
 "use strict";
 //import packages
+import 'highland'
 import Dispatcher from './dispatcher.js';
 import Collector from './collector.js';
 

@@ -11,6 +11,9 @@ class Collector {
 
     // get work from Queue
     getWork() {
+        console.log("getting work with Collector");
+        //make async call and push work with it
+        pushWork();
 
     }
 
@@ -21,6 +24,8 @@ class Collector {
 
     // push work onto workStream
     pushWork() {
-
+        for (var i = 1; i < 10; i++) {
+            this.workStream.write('fake event: ' + i);
+        }
     }
 }

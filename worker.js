@@ -6,9 +6,7 @@
 /*
  Use Highland for streams
  */
-var _ = require('highland');
-
-//import "highland.js";
+import "highland";
 
 class Worker {
     constructor(options, workStream) {
@@ -26,11 +24,7 @@ class Worker {
         //call new worker - pass in workStream and WorkerID from counter above
 
         //then start it
-        this.workStream.each() {
-            console.log('pulling a new workItem from Stream');
-            var workItem = processWorkItem(workItem);
-        }
-
+        this.workStream.each(processWorkItem(workItem));
     }
 
     processWorkItem(workItem) {
@@ -39,5 +33,6 @@ class Worker {
 
     stopWorker() {
         //listen for hardQuit or end WorkStream
+        this.workStream.end();
     }
 }
