@@ -1,17 +1,16 @@
 "use strict";
 //import packages
-import 'highland'
+import 'highland';
 import Dispatcher from './dispatcher.js';
 import Collector from './collector.js';
-
-//setup vars from passed in flags or defaults
-var numberOfWorkers = 4;
-var _ = highland;
 
 //load in Config file for AWS creds
 
 function main() {
-    var collector;
+    //setup vars from passed in flags or defaults
+    var numberOfWorkers = 4;
+    var _ = highland;
+
     console.log("starting dispatcher");
     var dispatcher = new Dispatcher({
         queueSize: 10
@@ -20,7 +19,7 @@ function main() {
 
     //start collector
     console.log("starting collector");
-    collector = new Collector({
+    var collector = new Collector({
         queueSize: 10
     });
     collector.getWork();
