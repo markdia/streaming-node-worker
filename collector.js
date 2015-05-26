@@ -3,6 +3,9 @@
  */
 "use strict";
 
+import "highland";
+var _ = require("highland");
+
 class Collector {
     constructor(options) {
         this.queueSize = options.queueSize;
@@ -13,8 +16,7 @@ class Collector {
     getWork() {
         console.log("getting work from Q with Collector");
         //make async call to Q and push work with it
-        pushWork();
-
+        this.pushWork();
     }
 
     //do a quick sanity check that work request makes sense

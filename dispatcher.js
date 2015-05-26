@@ -7,8 +7,8 @@
  Use Highland for streams
  */
 import "highland";
-import Worker from './worker.js';
 var _ = require("highland");
+import Worker from './worker.js';
 
 class Dispatcher {
     constructor(options, inboundWorkStream) {
