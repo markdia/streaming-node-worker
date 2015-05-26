@@ -29,7 +29,7 @@ class Worker {
     }
 
     processWorkItem(workItem) {
-        console.log('processing a workItem on worker: ' + this.id);
+        console.log('processing a workItem on worker: ' + this.id.toString());
     }
 
     stopWorker() {

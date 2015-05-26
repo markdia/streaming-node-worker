@@ -25,7 +25,15 @@ class Collector {
     // push work onto workStream
     pushWork() {
         for (let i = 1; i < 10; i++) {
-            this.workStream.write('fake event: ' + i);
+            this.workStream.write('fake event: ' + i.toString());
         }
+    }
+
+    checkWorkStreamSize() {
+        let x = 0;
+        var elementCount = this.workStream.scan1(function(x){
+            x++;
+        });
+        console.log("workstream size is: " + x.toString());
     }
 }

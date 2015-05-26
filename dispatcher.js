@@ -24,7 +24,7 @@ class Dispatcher {
         //another option may be to just fork the consumers with _().fork() to share backpressure
         var outboundWorkStreams = new Array;
         for (let i=0; i <= this.numberOfWorkers; i++) {
-            console.log('creating and starting worker: ' + i);
+            console.log('creating and starting worker: ' + i.toString());
             outboundWorkStreams[i] = _();
             this.workers[i] = new Worker({
                 id: i,
@@ -45,10 +45,8 @@ class Dispatcher {
             if (x > this.numberOfWorkers) {
                 x = 0;
             }
-            this.workStream.pipe(outboundWorkStreams[x]);
+            this.workStream.pipe(workers[x].workStream);
             x++;
-        })
-
-
+        });
     }
 }
