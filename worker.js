@@ -25,7 +25,7 @@ class Worker {
 
         //then start it
         console.log('starting worker to process workstream');
-        this.workStream.each(processWorkItem(workItem));
+        this.workStream.each(processWorkItem(x));
     }
 
     processWorkItem(workItem) {
@@ -37,3 +37,5 @@ class Worker {
         this.workStream.end();
     }
 }
+
+export default Worker;

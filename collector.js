@@ -34,6 +34,9 @@ class Collector {
         var elementCount = this.workStream.scan1(function(x){
             x++;
         });
-        console.log("workstream size is: " + x.toString());
+        console.log("workstream size is: " + elementCount.toString());
+        return elementCount;
     }
 }
+
+export default Collector;

@@ -8,6 +8,7 @@
  */
 import "highland";
 import Worker from './worker.js';
+var _ = require("highland");
 
 class Dispatcher {
     constructor(options, inboundWorkStream) {
@@ -50,3 +51,5 @@ class Dispatcher {
         });
     }
 }
+
+export default Dispatcher;
