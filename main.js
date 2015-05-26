@@ -26,7 +26,7 @@ function main() {
 
     console.log("starting dispatcher");
     dispatcher.startDispatcher();
-
+    dispatcher.distributeEvents();
     collector.getWork();
 }
 

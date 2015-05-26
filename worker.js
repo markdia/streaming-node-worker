@@ -23,13 +23,13 @@ class Worker {
         //look for events (workItems) in Stream and process those
         //call new worker - pass in workStream and WorkerID from counter above
         //then start it
-        console.log('starting worker to process work stream');
+        console.log('starting worker ' + this.id + ' to process work stream');
         this.workStream.each(this.processWorkItem);
         //todo: add in some support for errors and end stream events
     }
 
     processWorkItem(workItem) {
-        console.log('processing a workItem on worker');
+        console.log('processing a workItem ' + workItem.templateGUID + ' on worker');
     }
 
     stopWorker() {

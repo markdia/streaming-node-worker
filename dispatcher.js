@@ -22,17 +22,23 @@ class Dispatcher {
     // get work from Queue
     startDispatcher() {
         //create all of our workers from 1 to numberOfWorkers - hold onto ID to pass in, each gets unique stream
-        //another option may be to just fork the consumers with _().fork() to share backpressure
         var outboundWorkStreams = new Array;
         for (let i=0; i <= this.numberOfWorkers; i++) {
             console.log('creating and starting worker: ' + i.toString());
-            outboundWorkStreams[i] = this.inboundWorkStream.fork();
+            outboundWorkStreams[i] = _();
             this.workers[i] = new Worker({
                 id: i,
                 hardQuitStream: false
             }, outboundWorkStreams[i]);
             this.workers[i].startWorker();
         }
+    }
+
+    distributeEvents() {
+        this.inboundWorkStream.each((streamedItem) => {
+                this.workers[1].workStream.write(streamedItem);
+            }
+        );
     }
 }
 
