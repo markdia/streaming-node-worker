@@ -26,30 +26,13 @@ class Dispatcher {
         var outboundWorkStreams = new Array;
         for (let i=0; i <= this.numberOfWorkers; i++) {
             console.log('creating and starting worker: ' + i.toString());
-            outboundWorkStreams[i] = _();
+            outboundWorkStreams[i] = this.inboundWorkStream.fork();
             this.workers[i] = new Worker({
                 id: i,
                 hardQuitStream: false
             }, outboundWorkStreams[i]);
             this.workers[i].startWorker();
         }
-    }
-
-    dispatchWork() {
-        // pipe inbound work event to outbound workstream
-        // in a world with streams being buffered (vs a blocking channel)  we may need to do a check-in, check-out
-        // if we want to keep the buffer size to a max.  Basically stating X amount of stuff in the buffer prior
-        // to ask the collector to wait on pulling back more data from the Q
-        let x = 0;
-
-        let nextStreamedItem = this.inboundWorkStream.each(function(streamEvent){
-            console.log('pulling next streamed item');
-            return streamEvent;
-        });
-
-        if (x > this.numberOfWorkers) x = 0;
-        this.workers[x].workStream.write(nextStreamedItem);
-        x++;
     }
 }
 

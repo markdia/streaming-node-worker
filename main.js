@@ -28,7 +28,6 @@ function main() {
     dispatcher.startDispatcher();
 
     collector.getWork();
-    dispatcher.dispatchWork();
 }
 
 main();
