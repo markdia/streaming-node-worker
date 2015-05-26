@@ -11,8 +11,8 @@ class Collector {
 
     // get work from Queue
     getWork() {
-        console.log("getting work with Collector");
-        //make async call and push work with it
+        console.log("getting work from Q with Collector");
+        //make async call to Q and push work with it
         pushWork();
 
     }

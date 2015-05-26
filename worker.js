@@ -24,6 +24,7 @@ class Worker {
         //call new worker - pass in workStream and WorkerID from counter above
 
         //then start it
+        console.log('starting worker to process workstream');
         this.workStream.each(processWorkItem(workItem));
     }
 

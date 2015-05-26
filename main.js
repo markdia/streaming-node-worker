@@ -13,9 +13,11 @@ function main() {
 
     console.log("starting dispatcher");
     var dispatcher = new Dispatcher({
-        queueSize: 10
+        queueSize: 10,
+        numberOfWorkers: 4
     });
     dispatcher.startDispatcher(numberOfWorkers);
+    dispatcher.dispatchWork();
 
     //start collector
     console.log("starting collector");
@@ -24,3 +26,5 @@ function main() {
     });
     collector.getWork();
 }
+
+main();
