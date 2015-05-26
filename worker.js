@@ -25,15 +25,16 @@ class Worker {
 
         //then start it
         console.log('starting worker to process workstream');
-        this.workStream.each(function processWorkItem(x){
-            console.log('processing a workItem on worker: ' + this.id.toString());
+        let nextStreamedItem = this.workStream.each(function(streamEvent){
+            return streamEvent;
         });
+        this.processWorkItem(nextStreamedItem);
     }
-/*
+
     processWorkItem(workItem) {
         console.log('processing a workItem on worker: ' + this.id.toString());
     }
-*/
+
     stopWorker() {
         //listen for hardQuit or end WorkStream
         this.workStream.end();

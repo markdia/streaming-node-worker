@@ -7,8 +7,8 @@
  Use Highland for streams
  */
 import "highland";
-var _ = require("highland");
 import Worker from './worker.js';
+var _ = require("highland");
 
 class Dispatcher {
     constructor(options, inboundWorkStream) {
@@ -42,13 +42,13 @@ class Dispatcher {
         // to ask the collector to wait on pulling back more data from the Q
         let x = 0;
 
-        this.inboundWorkStream.each(function(){
-            if (x > this.numberOfWorkers) {
-                x = 0;
-            }
-            this.workStream.pipe(workers[x].workStream);
-            x++;
+        let nextStreamedItem = this.inboundWorkStream.each(function(streamEvent){
+            return streamEvent;
         });
+
+        if (x > this.numberOfWorkers) x = 0;
+        this.workers[x].workStream.write(nextStreamedItem);
+        x++;
     }
 }
 
