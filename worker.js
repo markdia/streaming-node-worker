@@ -28,6 +28,7 @@ class Worker {
         let nextStreamedItem = this.workStream.each(function(streamEvent){
             return streamEvent;
         });
+        //todo: add in some support for errors and end stream events
         this.processWorkItem(nextStreamedItem);
     }
 

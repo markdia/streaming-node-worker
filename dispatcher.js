@@ -43,6 +43,7 @@ class Dispatcher {
         let x = 0;
 
         let nextStreamedItem = this.inboundWorkStream.each(function(streamEvent){
+            console.log('pulling next streamed item');
             return streamEvent;
         });
 

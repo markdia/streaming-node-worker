@@ -13,20 +13,22 @@ function main() {
     //var _ = highland;
 
     //start collector
-    console.log("starting collector");
+    console.log("creating collector");
     var collector = new Collector({
         queueSize: 10
     });
 
-    console.log("starting dispatcher");
+    console.log("creating dispatcher");
     var dispatcher = new Dispatcher({
         queueSize: 10,
         numberOfWorkers: 4
     }, collector.workStream);
+
+    console.log("starting dispatcher");
     dispatcher.startDispatcher();
-    dispatcher.dispatchWork();
 
     collector.getWork();
+    dispatcher.dispatchWork();
 }
 
 main();
