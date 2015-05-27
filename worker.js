@@ -14,9 +14,6 @@ class Worker {
     constructor(options, workStream) {
         this.id = options.id;
         this.hardQuitStream = options.hardQuitStream;
-        /*
-        Part of me really wants to pass in workItem Validation object here in options to make the injectable
-         */
         this.workStream = workStream;
     }
 
@@ -27,8 +24,9 @@ class Worker {
         //then start it
         let errorStream = this.workStream.observe();
         errorStream.errors(function (err, push) {
-            _.log('error found... rethrowing!')
-            throw new StreamingError(err);
+            if (err) {
+                throw new StreamingError(err);
+            }
         });
         _.log('starting worker ' + this.id + ' to process work stream');
         this.workStream.each(this.processWorkItem);
