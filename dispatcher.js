@@ -35,8 +35,14 @@ class Dispatcher {
     }
 
     distributeEvents() {
+        let x = 0;
         this.inboundWorkStream.each((streamedItem) => {
-                this.workers[1].workStream.write(streamedItem);
+                if (x >= this.numberOfWorkers) {
+                    x=0;
+                }
+                this.workers[x].workStream.write(streamedItem);
+                console.log('worker ' + x + ' working on: ' + streamedItem.templateGUID);
+                x=x+1;
             }
         );
     }
