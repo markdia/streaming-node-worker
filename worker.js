@@ -29,7 +29,12 @@ class Worker {
     }
 
     processWorkItem(workItem) {
-        console.log('processing a workItem ' + workItem.templateGUID + ' on worker');
+        let someDelay = Math.round(Math.random()*3000) + 1;
+        setTimeout(function() {
+            console.log('processing a workItem ' + workItem.templateGUID + ' on worker with delay ' + someDelay)
+        }, someDelay);
+
+
     }
 
     stopWorker() {

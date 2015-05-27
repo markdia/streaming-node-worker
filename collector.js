@@ -28,7 +28,8 @@ class Collector {
     pushWork() {
         console.log('pushing work to workstream');
         //this is pretty much just faked up garbage
-        for (let i = 1; i < 10; i++) {
+        let someNumber = 450;
+        for (let i = 1; i < someNumber; i++) {
             this.workStream.write({ emailRecipient: "thisguy@email.com", templateGUID: i });
         }
     }

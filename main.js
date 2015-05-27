@@ -28,6 +28,14 @@ function main() {
     dispatcher.startDispatcher();
     dispatcher.distributeEvents();
     collector.getWork();
+
+    for (let c=0; c < 1000; c++) {
+        let someDelay = Math.round(Math.random()*10000) + 1;
+        setTimeout(function() {
+            collector.getWork();
+        }, someDelay);
+    }
+
 }
 
 main();
