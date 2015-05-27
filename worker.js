@@ -7,6 +7,8 @@
  Use Highland for streams
  */
 import "highland";
+import * as errors from './errors.js';
+var _ = require("highland");
 
 class Worker {
     constructor(options, workStream) {
@@ -23,15 +25,21 @@ class Worker {
         //look for events (workItems) in Stream and process those
         //call new worker - pass in workStream and WorkerID from counter above
         //then start it
-        console.log('starting worker ' + this.id + ' to process work stream');
+        let errorStream = this.workStream.observe();
+        errorStream.errors(function (err, push) {
+            _.log('error found... rethrowing!')
+            throw new StreamingError(err);
+        });
+        _.log('starting worker ' + this.id + ' to process work stream');
         this.workStream.each(this.processWorkItem);
         //todo: add in some support for errors and end stream events
+
     }
 
     processWorkItem(workItem) {
         let someDelay = Math.round(Math.random()*3000) + 1;
         setTimeout(function() {
-            console.log('processing a workItem ' + workItem.templateGUID + ' on worker with delay ' + someDelay)
+            _.log('processing a workItem ' + workItem.templateGUID + ' on worker with delay ' + someDelay)
         }, someDelay);
 
 

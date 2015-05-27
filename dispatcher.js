@@ -24,7 +24,7 @@ class Dispatcher {
         //create all of our workers from 1 to numberOfWorkers - hold onto ID to pass in, each gets unique stream
         var outboundWorkStreams = new Array;
         for (let i=0; i <= this.numberOfWorkers; i++) {
-            console.log('creating and starting worker: ' + i.toString());
+            _.log('creating and starting worker: ' + i.toString());
             outboundWorkStreams[i] = _();
             this.workers[i] = new Worker({
                 id: i,
@@ -41,7 +41,7 @@ class Dispatcher {
                     x=0;
                 }
                 this.workers[x].workStream.write(streamedItem);
-                console.log('worker ' + x + ' working on: ' + streamedItem.templateGUID);
+                _.log('worker ' + x + ' working on: ' + streamedItem.templateGUID);
                 x=x+1;
             }
         );

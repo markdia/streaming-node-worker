@@ -13,23 +13,23 @@ function main() {
     //var _ = highland;
 
     //start collector
-    console.log("creating collector");
+    _.log("creating collector");
     var collector = new Collector({
         queueSize: 10
     });
 
-    console.log("creating dispatcher");
+    _.log("creating dispatcher");
     var dispatcher = new Dispatcher({
         queueSize: 10,
         numberOfWorkers: 4
     }, collector.workStream);
 
-    console.log("starting dispatcher");
+    _.log("starting dispatcher");
     dispatcher.startDispatcher();
     dispatcher.distributeEvents();
     collector.getWork();
 
-    for (let c=0; c < 1000; c++) {
+    for (let c=0; c < 100; c++) {
         let someDelay = Math.round(Math.random()*10000) + 1;
         setTimeout(function() {
             collector.getWork();

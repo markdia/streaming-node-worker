@@ -26,7 +26,7 @@ class Collector {
 
     // push work onto workStream
     pushWork() {
-        console.log('pushing work to workstream');
+        _.log('pushing work to workstream');
         //this is pretty much just faked up garbage
         let someNumber = 450;
         for (let i = 1; i < someNumber; i++) {
@@ -39,7 +39,7 @@ class Collector {
         var elementCount = this.workStream.scan1(function(x){
             x++;
         });
-        console.log("workstream size is: " + elementCount.toString());
+        _.log("workstream size is: " + elementCount.toString());
         return elementCount;
     }
 }
